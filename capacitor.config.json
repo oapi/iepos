@@ -1,0 +1,10 @@
+{
+  "appId": "com.islamenterprise.coretrade",
+  "appName": "CoreTrade ERP",
+  "webDir": "server/public",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  }
+}

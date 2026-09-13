@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CoreTrade ERP</string>
+    <string name="title_activity_main">CoreTrade ERP</string>
+    <string name="package_name">com.islamenterprise.coretrade</string>
+    <string name="custom_url_scheme">com.islamenterprise.coretrade</string>
+</resources>

@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+server/node_modules/
+client/node_modules/
+
+# Environment & Credentials
+.env
+server/.env
+
+# Build outputs
+dist/
+client/dist/
+android/app/build/
+android/.gradle/
+android/build/
+android/captures/
+.gradle/
+
+# IDE & System
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

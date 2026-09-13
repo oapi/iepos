@@ -1,0 +1,28 @@
+{
+  "name": "coretrade-erp",
+  "version": "1.0.0",
+  "description": "CoreTrade ERP for Islam Enterprise",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build:client": "cd client && npm run build",
+    "build:android": "npm run build:client && npx cap copy android",
+    "cap:sync": "npx cap sync android",
+    "migrate": "cd server && npm run migrate",
+    "seed": "cd server && npm run seed",
+    "start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "pg": "^8.23.0"
+  }
+}
