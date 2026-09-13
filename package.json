@@ -9,7 +9,7 @@
     "dev:server": "(cd server && npm run dev)",
     "dev:client": "(cd client && npm run dev)",
     "build:client": "(cd client && npm run build)",
-    "build:android": "npm run build:client && npx cap copy android",
+    "build:android": "npm run build:client && npx cap sync android",
     "cap:sync": "npx cap sync android",
     "migrate": "(cd server && npm run migrate)",
     "seed": "(cd server && npm run seed)",

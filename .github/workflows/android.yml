@@ -33,8 +33,7 @@ jobs:
 
       - name: Build Web Client & Sync Capacitor Android
         run: |
-          (cd client && npm run build)
-          npx cap copy android
+          npm run build:android
 
       - name: Grant Execute Permission for Gradlew
         run: |
