@@ -14,24 +14,27 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Setup Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install All Dependencies
+      - name: Install Dependencies
         run: |
-          npm run install:all
+          npm install
+          (cd server && npm install)
+          (cd client && npm install)
 
-      - name: Build Web Assets & Sync Capacitor Android
+      - name: Build Web Client & Sync Capacitor Android
         run: |
-          npm run build:android
+          (cd client && npm run build)
+          npx cap copy android
 
       - name: Grant Execute Permission for Gradlew
         run: |
@@ -40,7 +43,7 @@ jobs:
       - name: Build Debug APK with Gradle
         run: |
           cd android
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
