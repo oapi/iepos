@@ -18,7 +18,7 @@ export function getApiBaseUrl() {
                    (window.location.hostname === 'localhost' && (!window.location.port || window.location.port === '80'));
 
   if (isNative) {
-    return 'http://10.0.2.2:5000/api';
+    return 'http://192.168.0.144:5000/api';
   }
 
   return '/api';

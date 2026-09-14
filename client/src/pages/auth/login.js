@@ -100,7 +100,7 @@ export async function renderLogin(container) {
                   Backend Host URL (IP / Domain)
                 </label>
                 <input type="text" id="login-server-url" class="form-control"
-                  placeholder="http://192.168.1.100:5000"
+                  placeholder="http://192.168.0.144:5000"
                   value="${currentServerUrl}"
                   style="height:38px; font-size:0.8rem; background:rgba(30,41,59,0.8); border:1px solid rgba(255,255,255,0.12); border-radius:0.5rem; color:#f8fafc;" />
                 <small style="color:#64748b; font-size:0.725rem; display:block; margin-top:0.35rem; line-height:1.3;">
