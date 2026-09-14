@@ -69,6 +69,8 @@ export default {
     invalidCredentials: 'Invalid username or password',
     sessionExpired: 'Session expired. Please login again.',
     welcome: 'Welcome back',
+    serverUrl: 'Server URL (Host IP / Domain)',
+    serverUrlHint: 'For Mobile APK, enter backend URL (e.g. http://192.168.1.100:5000 or server domain)',
   },
 
   // ─── Navigation ───────────────────────────────────────

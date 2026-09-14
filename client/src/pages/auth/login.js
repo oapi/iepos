@@ -71,6 +71,18 @@ export async function renderLogin(container) {
               </div>
             </div>
 
+            <div class="form-group" style="margin-top:1rem; padding-top:1rem; border-top:1px dashed #334155;">
+              <label class="form-label" for="login-server-url" style="color:#94a3b8; font-size:0.8rem; display:flex; align-items:center; gap:0.35rem;">
+                ⚙️ <span>${t('auth.serverUrl')}</span>
+              </label>
+              <input type="text" id="login-server-url" class="form-control"
+                placeholder="http://192.168.1.100:5000"
+                value="${localStorage.getItem('server_url') || ''}" style="font-size:0.85rem;" />
+              <small style="color:#64748b; font-size:0.75rem; display:block; margin-top:0.35rem; line-height:1.3;">
+                ${t('auth.serverUrlHint')}
+              </small>
+            </div>
+
             <div id="login-error" style="display:none; background:#fee2e2; border:1px solid #fca5a5;
                  color:#991b1b; padding:0.75rem; border-radius:0.5rem; font-size:0.875rem;
                  margin-bottom:1rem;"></div>
@@ -111,6 +123,13 @@ export async function renderLogin(container) {
     const errEl = document.getElementById('login-error');
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
+    const serverUrlInput = document.getElementById('login-server-url');
+
+    if (serverUrlInput && serverUrlInput.value.trim()) {
+      localStorage.setItem('server_url', serverUrlInput.value.trim());
+    } else {
+      localStorage.removeItem('server_url');
+    }
 
     if (!username || !password) {
       errEl.textContent = t('auth.invalidCredentials');

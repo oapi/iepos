@@ -3,7 +3,26 @@
  * Centralized fetch wrapper with error handling and auth
  */
 
-const BASE = '/api';
+export function getApiBaseUrl() {
+  const saved = localStorage.getItem('server_url');
+  if (saved && saved.trim()) {
+    let clean = saved.trim().replace(/\/$/, '');
+    if (!clean.endsWith('/api')) {
+      clean += '/api';
+    }
+    return clean;
+  }
+
+  const isNative = window.Capacitor?.isNativePlatform?.() || 
+                   window.location.protocol === 'file:' || 
+                   (window.location.hostname === 'localhost' && (!window.location.port || window.location.port === '80'));
+
+  if (isNative) {
+    return 'http://10.0.2.2:5000/api';
+  }
+
+  return '/api';
+}
 
 class ApiError extends Error {
   constructor(message, status, data) {
@@ -29,11 +48,13 @@ async function request(method, path, body = null) {
     opts.body = JSON.stringify(body);
   }
 
+  const baseUrl = getApiBaseUrl();
+
   let res;
   try {
-    res = await fetch(`${BASE}${path}`, opts);
+    res = await fetch(`${baseUrl}${path}`, opts);
   } catch {
-    throw new ApiError('Network error — check your connection', 0, null);
+    throw new ApiError('Network error — check Server URL or connection', 0, null);
   }
 
   const ct = res.headers.get('content-type') || '';

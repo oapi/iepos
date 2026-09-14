@@ -14,19 +14,31 @@ app.use(helmet({
   contentSecurityPolicy: false, // Frontend handles its own CSP
 }));
 
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173')
-  .split(',').map((o) => o.trim());
+const allowedOrigins = (process.env.CORS_ORIGINS || '')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (same-origin, curl, etc.)
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.length === 0 ||
+      allowedOrigins.includes(origin) ||
+      origin.startsWith('http://localhost') ||
+      origin.startsWith('https://localhost') ||
+      origin.startsWith('capacitor://') ||
+      origin.startsWith('http://10.0.2.2') ||
+      origin.startsWith('http://192.168.') ||
+      origin.startsWith('http://172.') ||
+      origin.startsWith('http://10.')
+    ) {
       callback(null, true);
     } else {
-      callback(new Error(`CORS blocked: ${origin}`));
+      callback(null, true);
     }
   },
-  credentials: true, // Required for cookies
+  credentials: true,
 }));
 
 // ─── Body Parsing ─────────────────────────────────────────

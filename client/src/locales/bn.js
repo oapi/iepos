@@ -69,6 +69,8 @@ export default {
     invalidCredentials: 'ভুল ব্যবহারকারীর নাম বা পাসওয়ার্ড',
     sessionExpired: 'সেশন শেষ হয়েছে। আবার লগইন করুন।',
     welcome: 'স্বাগতম',
+    serverUrl: 'সার্ভার URL (Host IP / ডোমেইন)',
+    serverUrlHint: 'মোবাইল APK-এর জন্য ব্যাকএন্ড URL লিখুন (যেমন http://192.168.1.100:5000)',
   },
 
   // ─── Navigation ───────────────────────────────────────
